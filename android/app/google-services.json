@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883898126883",
+    "project_id": "aetherlabs-2304c",
+    "storage_bucket": "aetherlabs-2304c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883898126883:android:181b72152a0f4023c31796",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGstY0QobNrbf6FbqGAy-u5TmiPqO4xzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
