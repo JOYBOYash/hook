@@ -1,8 +1,9 @@
-'''import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:myapp/router.dart';
+import 'package:myapp/theme.dart';
+import 'package:myapp/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:myapp/services/auth_service.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -10,7 +11,12 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,18 +24,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamProvider.value(
-      value: AuthService().authStateChanges,
-      initialData: null,
-      child: MaterialApp.router(
-        title: 'Book Discovery',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        routerConfig: router,
-      ),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp.router(
+          title: 'Book Discovery',
+          theme: lightTheme, // Use the new light theme
+          darkTheme: darkTheme, // Use the new dark theme
+          themeMode: themeProvider.themeMode, // Control the theme mode
+          routerConfig: router,
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }
-''
